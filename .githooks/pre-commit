@@ -4,9 +4,11 @@ BIN=./tools/bin
 VERSION=1.34.0
 
 if [ -z $EXEPATH ]; then
+  # Git Bash on Windows
   BUF="https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-Windows-x86_64.exe"
   CMD="$BIN/buf.exe"
 else
+  # Non-Windows
   BUF="https://github.com/bufbuild/buf/releases/download/v${VERSION}/buf-Linux-x86_64"
   CMD="$BIN/buf"
 fi
