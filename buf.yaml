@@ -1,0 +1,9 @@
+version: v2
+modules:
+  - name: buf.build/u22-2024/grpc
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE
