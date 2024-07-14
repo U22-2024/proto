@@ -1,0 +1,7 @@
+services:
+  pre-commit:
+    image: bufbuild/buf:latest
+    working_dir: /work
+    volumes:
+      - .:/work
+    entrypoint: ["./scripts/pre-commit.sh"]
