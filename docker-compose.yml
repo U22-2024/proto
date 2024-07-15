@@ -5,3 +5,9 @@ services:
     volumes:
       - .:/work
     entrypoint: ["./scripts/pre-commit.sh"]
+  generate:
+    image: bufbuild/buf:latest
+    working_dir: /work
+    volumes:
+      - .:/work
+    entrypoint: ["./scripts/generate.sh"]
