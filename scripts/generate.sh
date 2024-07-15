@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if git diff --exit-code proto && [ -d gen ]; then
-  echo "No changes in proto directory"
-  exit 0
-fi
+# if git diff --exit-code proto && [ -d gen ]; then
+#   echo "No changes in proto directory"
+#   exit 0
+# fi
 
 echo "Generating..."
 /usr/local/bin/buf generate
