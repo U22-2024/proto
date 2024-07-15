@@ -2,9 +2,28 @@ name: buf-pull-request
 on: pull_request
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - uses: bufbuild/buf-setup-action@v1
-      - name: Generate gRPC code
-        run: ./scripts/generate.sh
+      - name: generate
+        run: buf generate
+      - name: Diff
+        id: diff
+        run: |
+          git add -N .
+          git diff --name-only --exit-code
+        continue-on-error: true
+      - name: Commit & Push
+        run: |
+          set -x
+          git config user.name actions-user
+          git config user.email action@github.com
+          git add .
+          git commit --author=. -m "Generated gRPC code"
+          git push
+        if: steps.diff.outcome == 'failure'

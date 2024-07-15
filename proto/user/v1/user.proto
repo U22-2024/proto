@@ -4,6 +4,7 @@ package proto.user.v1;
 
 service UserService {
   rpc Create(UserServiceCreateRequest) returns (UserServiceCreateResponse);
+  rpc Read(UserServiceReadRequest) returns (UserServiceReadResponse);
 }
 
 message UserServiceCreateRequest {
@@ -12,6 +13,16 @@ message UserServiceCreateRequest {
 }
 
 message UserServiceCreateResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserServiceReadRequest {
+  int32 id = 1;
+}
+
+message UserServiceReadResponse {
   int32 id = 1;
   string name = 2;
   string email = 3;
