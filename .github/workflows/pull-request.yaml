@@ -11,6 +11,7 @@ jobs:
       - name: generate
         run: buf generate
       - name: diff
+        id: diff
         run: |
           git add -N .
           git diff --name-only --exit-code
