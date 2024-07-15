@@ -6,7 +6,7 @@
 # fi
 
 echo "Generating..."
-/usr/local/bin/buf generate
+buf generate
 echo "Done"
 
 if [ -n $(git diff --exit-code gen) ]; then
@@ -17,5 +17,5 @@ if [ -n $(git diff --exit-code gen) ]; then
 
   git add gen
   git commit -n -m "Update generated files"
-  git push
+  git push origin main
 fi
