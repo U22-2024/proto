@@ -2,7 +2,7 @@ name: buf-pull-request
 on: pull_request
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       contents: write
     steps:
