@@ -29,6 +29,14 @@ class UserServiceClient extends $grpc.Client {
       '/proto.user.v1.UserService/Read',
       ($1.UserServiceReadRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.UserServiceReadResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$1.UserServiceUpdateRequest, $1.UserServiceUpdateResponse>(
+      '/proto.user.v1.UserService/Update',
+      ($1.UserServiceUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.UserServiceUpdateResponse.fromBuffer(value));
+  static final _$delete = $grpc.ClientMethod<$1.UserServiceDeleteRequest, $1.UserServiceDeleteResponse>(
+      '/proto.user.v1.UserService/Delete',
+      ($1.UserServiceDeleteRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.UserServiceDeleteResponse.fromBuffer(value));
 
   UserServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -42,6 +50,14 @@ class UserServiceClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$1.UserServiceReadResponse> read($1.UserServiceReadRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$read, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.UserServiceUpdateResponse> update($1.UserServiceUpdateRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.UserServiceDeleteResponse> delete($1.UserServiceDeleteRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$delete, request, options: options);
   }
 }
 
@@ -64,6 +80,20 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.UserServiceReadRequest.fromBuffer(value),
         ($1.UserServiceReadResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.UserServiceUpdateRequest, $1.UserServiceUpdateResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.UserServiceUpdateRequest.fromBuffer(value),
+        ($1.UserServiceUpdateResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.UserServiceDeleteRequest, $1.UserServiceDeleteResponse>(
+        'Delete',
+        delete_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.UserServiceDeleteRequest.fromBuffer(value),
+        ($1.UserServiceDeleteResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$1.UserServiceCreateResponse> create_Pre($grpc.ServiceCall call, $async.Future<$1.UserServiceCreateRequest> request) async {
@@ -74,6 +104,16 @@ abstract class UserServiceBase extends $grpc.Service {
     return read(call, await request);
   }
 
+  $async.Future<$1.UserServiceUpdateResponse> update_Pre($grpc.ServiceCall call, $async.Future<$1.UserServiceUpdateRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$1.UserServiceDeleteResponse> delete_Pre($grpc.ServiceCall call, $async.Future<$1.UserServiceDeleteRequest> request) async {
+    return delete(call, await request);
+  }
+
   $async.Future<$1.UserServiceCreateResponse> create($grpc.ServiceCall call, $1.UserServiceCreateRequest request);
   $async.Future<$1.UserServiceReadResponse> read($grpc.ServiceCall call, $1.UserServiceReadRequest request);
+  $async.Future<$1.UserServiceUpdateResponse> update($grpc.ServiceCall call, $1.UserServiceUpdateRequest request);
+  $async.Future<$1.UserServiceDeleteResponse> delete($grpc.ServiceCall call, $1.UserServiceDeleteRequest request);
 }
