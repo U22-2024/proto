@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if git diff --exit-code proto; then
+if git diff --exit-code proto >/dev/null 2>&1; then
   echo "No changes in proto directory"
   exit 0
 fi
