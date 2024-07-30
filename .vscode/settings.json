@@ -1,4 +1,13 @@
 {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true
+  "buf.binaryPath": "./Tools/bin/buf.exe",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.config": true
+  }
 }

@@ -1,3 +1,0 @@
-#!/bin/bash -eEu
-
-docker compose run --rm pre-commit

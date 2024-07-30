@@ -1,0 +1,23 @@
+{
+  "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+  "tasks": [
+    {
+      "name": "install-buf-cli",
+      "command": "dotnet",
+      "args": [
+        "fsi",
+        "./scripts/init.fsx"
+      ],
+      "group": "init"
+    },
+    {
+      "name": "lint",
+      "command": "dotnet",
+      "args": [
+        "fsi",
+        "./scripts/lint-staged.fsx"
+      ],
+      "group": "pre-commit"
+    }
+  ]
+}
