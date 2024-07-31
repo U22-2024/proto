@@ -24,7 +24,7 @@ let lintProto (files: string seq) =
     System.Diagnostics.Process.Start(
       bufCmd,
       Seq.append
-        [ "lint"; "--config" ]
+        [ "lint" ]
         (files
          |> Seq.filter (fun x -> x.EndsWith(".proto"))
          |> Seq.fold (fun acc x -> Seq.append acc [ "--path"; x ]) Seq.empty)
@@ -45,8 +45,8 @@ let formatProto (files: string seq) =
 
   consoleColor ConsoleColor.Green "🧹 Formatting proto files..."
 
-  let proc =
-    System.Diagnostics.Process.Start(
+  let startInfo =
+    new System.Diagnostics.ProcessStartInfo(
       bufCmd,
       Seq.append
         [ "format"; "-w" ]
@@ -54,6 +54,17 @@ let formatProto (files: string seq) =
          |> Seq.filter (fun x -> x.EndsWith(".proto"))
          |> Seq.fold (fun acc x -> Seq.append acc [ "--path"; x ]) Seq.empty)
     )
+
+  // Windowsの場合のみ、PATHにGit for Windowsのパスを追加
+  if Environment.OSVersion.Platform = PlatformID.Win32NT then
+    let oldPath = startInfo.EnvironmentVariables.["PATH"]
+
+    let pathList =
+      oldPath.Split(';') |> Seq.append [ "C:\\Program Files\\Git\\usr\\bin" ]
+
+    startInfo.EnvironmentVariables.["PATH"] <- String.Join(";", pathList)
+
+  let proc = System.Diagnostics.Process.Start(startInfo)
 
   proc.WaitForExit()
 
@@ -68,6 +79,7 @@ let main =
 
   let stagedFiles =
     repo.Diff.Compare<TreeChanges>(repo.Head.Tip.Tree, DiffTargets.Index)
+    |> Seq.filter (fun change -> change.Status = ChangeKind.Modified)
     |> Seq.map (fun change -> change.Path)
 
   lintProto stagedFiles
