@@ -5,6 +5,7 @@
       "label": "InitTask",
       "type": "shell",
       "command": [
+        "dotnet tool restore &&",
         "dotnet husky install &&",
         "dotnet husky run --group init"
       ],

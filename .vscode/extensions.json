@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "bufbuild.vscode-buf",
+    "tekumara.typos-vscode",
+    "EditorConfig.EditorConfig"
+  ]
+}
