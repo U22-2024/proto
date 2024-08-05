@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package remind.v1;
+
+service RemindService {
+  rpc GetRemind(GetRemindRequest) returns (GetRemindResponse);
+  rpc GetReminds(GetRemindsRequest) returns (GetRemindsResponse);
+  rpc CreateRemind(CreateRemindRequest) returns (CreateRemindResponse);
+  rpc UpdateRemind(UpdateRemindRequest) returns (UpdateRemindResponse);
+  rpc DeleteRemind(DeleteRemindRequest) returns (DeleteRemindResponse);
+}
+
+message Remind {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string uid = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message GetRemindRequest {
+  string id = 1;
+}
+
+message GetRemindResponse {
+  Remind remind = 1;
+}
+
+message GetRemindsRequest {
+  string uid = 1;
+}
+
+message GetRemindsResponse {
+  repeated Remind reminds = 1;
+}
+
+message CreateRemindRequest {
+  string title = 1;
+  string description = 2;
+  string uid = 3;
+}
+
+message CreateRemindResponse {
+  Remind remind = 1;
+}
+
+message UpdateRemindRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message UpdateRemindResponse {
+  Remind remind = 1;
+}
+
+message DeleteRemindRequest {
+  string id = 1;
+}
+
+message DeleteRemindResponse {
+  Remind remind = 1;
+}
