@@ -15,8 +15,6 @@ message Remind {
   string title = 2;
   string description = 3;
   string uid = 4;
-  string created_at = 5;
-  string updated_at = 6;
 }
 
 message GetRemindRequest {
