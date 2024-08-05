@@ -9,6 +9,9 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/.config": true,
-    "**/Tools": true,
+    "**/Tools": true
+  },
+  "terminal.integrated.env.windows": {
+    "PATH": "C:\\Program Files\\Git\\usr\\bin;${workspaceRoot}\\Tools\\bin;${env:PATH}"
   }
 }

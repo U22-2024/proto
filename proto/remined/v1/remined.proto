@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package remined.v1;
+
+service ReminedService {
+  rpc GetRemined(GetReminedRequest) returns (GetReminedResponse);
+  rpc GetRemineds(GetReminedsRequest) returns (GetReminedsResponse);
+  rpc CreateRemined(CreateReminedRequest) returns (CreateReminedResponse);
+  rpc UpdateRemined(UpdateReminedRequest) returns (UpdateReminedResponse);
+  rpc DeleteRemined(DeleteReminedRequest) returns (DeleteReminedResponse);
+}
+
+message Remined {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string uid = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message GetReminedRequest {
+  string id = 1;
+}
+
+message GetReminedResponse {
+  Remined remined = 1;
+}
+
+message GetReminedsRequest {
+  string uid = 1;
+}
+
+message GetReminedsResponse {
+  repeated Remined remineds = 1;
+}
+
+message CreateReminedRequest {
+  string title = 1;
+  string description = 2;
+  string uid = 3;
+}
+
+message CreateReminedResponse {
+  Remined remined = 1;
+}
+
+message UpdateReminedRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message UpdateReminedResponse {
+  Remined remined = 1;
+}
+
+message DeleteReminedRequest {
+  string id = 1;
+}
+
+message DeleteReminedResponse {
+  Remined remined = 1;
+}
