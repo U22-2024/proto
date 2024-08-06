@@ -57,6 +57,4 @@ message DeleteRemindRequest {
   string id = 1;
 }
 
-message DeleteRemindResponse {
-  Remind remind = 1;
-}
+message DeleteRemindResponse {}

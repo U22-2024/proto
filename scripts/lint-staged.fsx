@@ -46,10 +46,10 @@ let formatProto (files: string seq) =
   consoleColor ConsoleColor.Green "🧹 Formatting proto files..."
 
   let startInfo =
-    new System.Diagnostics.ProcessStartInfo(
+    new Diagnostics.ProcessStartInfo(
       bufCmd,
       Seq.append
-        [ "format"; "-w" ]
+        [ "format"; "-w"; "--exit-code" ]
         (files
          |> Seq.filter (fun x -> x.EndsWith(".proto"))
          |> Seq.fold (fun acc x -> Seq.append acc [ "--path"; x ]) Seq.empty)
@@ -64,7 +64,7 @@ let formatProto (files: string seq) =
 
     startInfo.EnvironmentVariables.["PATH"] <- String.Join(";", pathList)
 
-  let proc = System.Diagnostics.Process.Start(startInfo)
+  let proc = Diagnostics.Process.Start(startInfo)
 
   proc.WaitForExit()
 
