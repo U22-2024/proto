@@ -50,6 +50,7 @@ message UpdateRemindRequest {
   string title = 2;
   string description = 3;
   string uid = 4;
+  string group_id = 5;
 }
 
 message UpdateRemindResponse {
