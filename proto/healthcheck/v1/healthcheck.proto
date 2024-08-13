@@ -6,8 +6,7 @@ service HealthCheckService {
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
 }
 
-message HealthCheckRequest {
-}
+message HealthCheckRequest {}
 
 message HealthCheckResponse {
   string status = 1;
