@@ -1,7 +1,4 @@
-#r "nuget: LibGit2Sharp, 0.30.0"
-
 open System
-open LibGit2Sharp
 
 let consoleColor fc (format: string) =
   let current = Console.ForegroundColor
@@ -14,21 +11,10 @@ let bufCmd =
   | PlatformID.Win32NT -> "./Tools/bin/buf.exe"
   | _ -> "./Tools/bin/buf"
 
-let lintProto (files: string seq) =
-  if files |> Seq.exists (fun x -> x.EndsWith(".proto")) |> not then
-    Environment.Exit(0)
-
+let lintProto () =
   printfn "🖋️  Linting proto files..."
 
-  let proc =
-    System.Diagnostics.Process.Start(
-      bufCmd,
-      Seq.append
-        [ "lint" ]
-        (files
-         |> Seq.filter (fun x -> x.EndsWith(".proto"))
-         |> Seq.fold (fun acc x -> Seq.append acc [ "--path"; x ]) Seq.empty)
-    )
+  let proc = System.Diagnostics.Process.Start(bufCmd, [ "lint" ])
 
   proc.WaitForExit()
 
@@ -36,24 +22,11 @@ let lintProto (files: string seq) =
     consoleColor ConsoleColor.Red "🚫 Linting failed."
     Environment.Exit(1)
 
-let formatProto (files: string seq) =
-  if files |> Seq.exists (fun x -> x.EndsWith(".proto")) |> not then
-    Environment.Exit(0)
-
-  if files |> Seq.isEmpty then
-    Environment.Exit(0)
-
+let formatProto () =
   consoleColor ConsoleColor.Green "🧹 Formatting proto files..."
 
   let startInfo =
-    new Diagnostics.ProcessStartInfo(
-      bufCmd,
-      Seq.append
-        [ "format"; "-w"; "--exit-code" ]
-        (files
-         |> Seq.filter (fun x -> x.EndsWith(".proto"))
-         |> Seq.fold (fun acc x -> Seq.append acc [ "--path"; x ]) Seq.empty)
-    )
+    new Diagnostics.ProcessStartInfo(bufCmd, [ "format"; "-w"; "--exit-code" ])
 
   // Windowsの場合のみ、PATHにGit for Windowsのパスを追加
   if Environment.OSVersion.Platform = PlatformID.Win32NT then
@@ -75,12 +48,5 @@ let formatProto (files: string seq) =
 [ EntryPointAttribute ]
 
 let main =
-  use repo = new Repository(Environment.CurrentDirectory)
-
-  let stagedFiles =
-    repo.Diff.Compare<TreeChanges>(repo.Head.Tip.Tree, DiffTargets.Index)
-    |> Seq.filter (fun change -> change.Status = ChangeKind.Modified)
-    |> Seq.map (fun change -> change.Path)
-
-  lintProto stagedFiles
-  formatProto stagedFiles
+  lintProto ()
+  formatProto ()
