@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package remindTemplate.v1;
+package remind_template.v1;
 
 service RemindTemplateService {
   rpc GetRemindTemplate(GetRemindTemplateRequest) returns (GetRemindTemplateResponse);
@@ -22,7 +22,7 @@ message GetRemindTemplateRequest {
 }
 
 message GetRemindTemplateResponse {
-  RemindTemplate remindTemplate = 1;
+  RemindTemplate remind_template = 1;
 }
 
 message GetRemindTemplatesRequest {
@@ -30,17 +30,18 @@ message GetRemindTemplatesRequest {
 }
 
 message GetRemindTemplatesResponse {
-  repeated RemindTemplate remindTemplates = 1;
+  repeated RemindTemplate remind_templates = 1;
 }
 
 message CreateRemindTemplateRequest {
-  string title = 1;
-  string description = 2;
-  string uid = 3;
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string uid = 4;
 }
 
 message CreateRemindTemplateResponse {
-  RemindTemplate remindTemplate = 1;
+  RemindTemplate remind_template = 1;
 }
 
 message UpdateRemindTemplateRequest {
@@ -51,7 +52,7 @@ message UpdateRemindTemplateRequest {
 }
 
 message UpdateRemindTemplateResponse {
-  RemindTemplate remindTemplate = 1;
+  RemindTemplate remind_template = 1;
 }
 
 message DeleteRemindTemplateRequest {
