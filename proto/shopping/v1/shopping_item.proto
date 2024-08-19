@@ -47,6 +47,7 @@ message CreateShoppingItemResponse {
   ShoppingItem item = 1;
 }
 
+// アイテムの情報を更新する
 message UpdateShoppingItemRequest {
   // アイテムのGUID
   common.v1.Guid id = 1;
