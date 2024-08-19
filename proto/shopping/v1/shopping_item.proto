@@ -10,8 +10,8 @@ message ShoppingItem {
   common.v1.Guid id = 1;
   // アイテム名
   string name = 2;
-  // アイテムの数
-  int32 quantity = 3;
+  // アイテムの量
+  string quantity = 3;
   // アイテムの種類
   string type = 4;
   // アイテムのメモ
@@ -36,8 +36,8 @@ enum ItemStatus {
 message CreateShoppingItemRequest {
   // アイテム名
   string name = 1;
-  // アイテムの数
-  int32 quantity = 2;
+  // アイテムの量
+  string quantity = 2;
   // アイテムのメモ
   string memo = 4;
 }
@@ -53,8 +53,8 @@ message UpdateShoppingItemRequest {
   common.v1.Guid id = 1;
   // アイテム名
   string name = 2;
-  // アイテムの数
-  int32 quantity = 3;
+  // アイテムの量
+  string quantity = 3;
   // アイテムのメモ
   string memo = 5;
   // アイテムの状態
