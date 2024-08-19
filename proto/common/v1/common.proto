@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package common.v1;
+
+message Guid {
+  string value = 1;
+}
+
+message Uid {
+  string value = 1;
+}

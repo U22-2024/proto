@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package shopping.v1;
+
+import "common/v1/common.proto";
+
+// 買い物リストのアイテム
+message ShoppingItem {
+  // アイテムのGUID
+  common.v1.Guid id = 1;
+  // アイテム名
+  string name = 2;
+  // アイテムの数
+  int32 quantity = 3;
+  // アイテムの種類
+  string type = 4;
+  // アイテムのメモ
+  string memo = 5;
+  // アイテムの状態
+  ItemStatus status = 6;
+}
+
+// アイテムの状態
+enum ItemStatus {
+  // 状態が未指定
+  ITEM_STATUS_UNSPECIFIED = 0;
+  // アイテムが購入済み
+  ITEM_STATUS_PURCHASED = 1;
+  // アイテムが購入済みでない
+  ITEM_STATUS_NOT_PURCHASED = 2;
+  // アイテムが購入保留中
+  ITEM_STATUS_PURCHASE_PENDING = 3;
+}
+
+// リクエストしたユーザーのUIDに紐づく買い物リストのアイテムを作成する
+message CreateShoppingItemRequest {
+  // アイテム名
+  string name = 1;
+  // アイテムの数
+  int32 quantity = 2;
+  // アイテムのメモ
+  string memo = 4;
+}
+
+message CreateShoppingItemResponse {
+  // 買い物リストのアイテム
+  ShoppingItem item = 1;
+}
+
+message UpdateShoppingItemRequest {
+  // アイテムのGUID
+  common.v1.Guid id = 1;
+  // アイテム名
+  string name = 2;
+  // アイテムの数
+  int32 quantity = 3;
+  // アイテムのメモ
+  string memo = 5;
+  // アイテムの状態
+  ItemStatus status = 6;
+}
+
+message UpdateShoppingItemResponse {
+  // 買い物リストのアイテム
+  ShoppingItem item = 1;
+}
+
+message DeleteShoppingItemRequest {
+  // アイテムのGUID
+  common.v1.Guid id = 1;
+}
+
+message DeleteShoppingItemResponse {}

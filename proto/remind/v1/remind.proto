@@ -10,6 +10,13 @@ service RemindService {
   rpc DeleteRemind(DeleteRemindRequest) returns (DeleteRemindResponse);
 }
 
+enum RemindType {
+  REMIND_TYPE_UNSPECIFIED = 0;
+  REMIND_TYPE_SHOPPING = 1;
+  REMIND_TYPE_HOMEWORK = 2;
+  REMIND_TYPE_OUTING = 3;
+}
+
 message Remind {
   string id = 1;
   string title = 2;

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package shopping.v1;
+
+import "shopping/v1/shopping_item.proto";
+
+service ShoppingService {
+  rpc GetShoppingList(GetShoppingListRequest) returns (GetShoppingListResponse);
+  rpc CreateShoppingItem(CreateShoppingItemRequest) returns (CreateShoppingItemResponse);
+  rpc UpdateShoppingItem(UpdateShoppingItemRequest) returns (UpdateShoppingItemResponse);
+  rpc DeleteShoppingItem(DeleteShoppingItemRequest) returns (DeleteShoppingItemResponse);
+}
+
+// リクエストしたユーザーのUIDに紐づく買い物リストのアイテムを取得する
+message GetShoppingListRequest {}
+
+message GetShoppingListResponse {
+  repeated ShoppingItem items = 1;
+}
