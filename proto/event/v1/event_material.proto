@@ -12,7 +12,8 @@ service EventMaterialService {
 
 message Place {
   string name = 1;
-  Pos pos = 2;
+  string address = 2;
+  Pos pos = 3;
 }
 
 message EventMaterial {
