@@ -2,14 +2,16 @@ syntax = "proto3";
 
 package event.v1;
 
+import "common/v1/common.proto";
 import "event/v1/core.proto";
 
 service EventMaterialService {
   rpc PredictEventMaterialItem(PredictEventMaterialItemRequest) returns (PredictEventMaterialItemResponse);
+  rpc PredictPositionsFromText(PredictPositionsFromTextRequest) returns (PredictPositionsFromTextResponse);
 }
 
 message EventMaterial {
-  bool type = 1;
+  bool is_out = 1;
   string remind = 2;
   Pos from_pos = 3;
   string destination = 4;
@@ -20,11 +22,20 @@ message EventMaterial {
 }
 
 message PredictEventMaterialItemRequest {
-  string uid = 1;
+  common.v1.Uid uid = 1;
   EventMaterial event_material = 2;
   string text = 3;
 }
 
 message PredictEventMaterialItemResponse {
   EventMaterial event_material = 1;
+}
+
+message PredictPositionsFromTextRequest {
+  common.v1.Uid uid = 1;
+  string text = 2;
+}
+
+message PredictPositionsFromTextResponse {
+  repeated Pos pos = 1;
 }

@@ -55,7 +55,8 @@ message UserItems {
 
 
 message GetEventRequest {
-  common.v1.Guid id = 1;
+  common.v1.Uid uid = 1;
+  common.v1.Guid id = 2;
 }
 
 message GetEventResponse {
@@ -71,8 +72,9 @@ message GetEventsResponse {
 }
 
 message CreateEventRequest {
-  TimeTable time_table = 1;
-  UserItems user_items = 2;
+  common.v1.Uid uid = 1;
+  TimeTable time_table = 2;
+  UserItems user_items = 3;
 }
 
 message CreateEventResponse {
@@ -80,8 +82,9 @@ message CreateEventResponse {
 }
 
 message UpdateEventRequest {
-  common.v1.Guid id = 1;
-  Event event = 2;
+  common.v1.Uid uid = 1;
+  common.v1.Guid id = 2;
+  Event event = 3;
 }
 
 message UpdateEventResponse {
@@ -89,7 +92,8 @@ message UpdateEventResponse {
 }
 
 message DeleteEventRequest {
-  common.v1.Guid guid = 1;
+  common.v1.Uid uid = 1;
+  common.v1.Guid guid = 2;
 }
 
 message DeleteEventResponse {}
