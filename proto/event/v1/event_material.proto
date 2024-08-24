@@ -10,6 +10,11 @@ service EventMaterialService {
   rpc PredictPositionsFromText(PredictPositionsFromTextRequest) returns (PredictPositionsFromTextResponse);
 }
 
+message Place {
+  string name = 1;
+  Pos pos = 2;
+}
+
 message EventMaterial {
   bool is_out = 1;
   string remind = 2;
@@ -37,5 +42,5 @@ message PredictPositionsFromTextRequest {
 }
 
 message PredictPositionsFromTextResponse {
-  repeated Pos pos = 1;
+  repeated Place place = 1;
 }

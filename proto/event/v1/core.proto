@@ -7,6 +7,7 @@ enum MoveType {
   MOVE_TYPE_CAR = 1;
   MOVE_TYPE_TRAIN = 2;
   MOVE_TYPE_WALK = 3;
+  MOVE_TYPE_OTHER = 4;
 }
 
 enum TimeTableType {
