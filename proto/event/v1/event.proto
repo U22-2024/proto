@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package event.v1;
+
+import "common/v1/common.proto";
+import "event/v1/core.proto";
+
+service EventService {
+  rpc GetEvent(GetEventRequest) returns (GetEventResponse);
+  rpc GetEvents(GetEventsRequest) returns (GetEventsResponse);
+  rpc CreateEvent(CreateEventRequest) returns (CreateEventResponse);
+  rpc UpdateEvent(UpdateEventRequest) returns (UpdateEventResponse);
+  rpc DeleteEvent(DeleteEventRequest) returns (DeleteEventResponse);
+}
+
+message Event {
+  common.v1.Guid id = 1;
+  repeated string event_item = 2;
+  TimeTable time_table = 3;
+  UserItems user_items = 4;
+}
+
+message TimeTable {
+  repeated TimeTableItem item = 1;
+}
+
+message TimeTableItem {
+  TimeTableType type = 1;
+
+  // type = point
+  string name = 2;
+
+  // type = move
+  MoveType move = 3;
+  DateTime from_time = 4;
+  DateTime end_time = 5;
+  uint32 distance = 6;
+  string line_name = 7;
+
+  // move = train
+  Transport transport = 8;
+}
+
+message Transport {
+  string fare = 1;
+  string train_name = 2;
+  string color = 3;
+  string direction = 4;
+  string destination = 5;
+}
+
+message UserItems {
+  repeated string item = 1;
+}
+
+
+message GetEventRequest {
+  common.v1.Guid id = 1;
+}
+
+message GetEventResponse {
+  Event event = 1;
+}
+
+message GetEventsRequest {
+  common.v1.Uid uid = 1;
+}
+
+message GetEventsResponse {
+  repeated Event events = 1;
+}
+
+message CreateEventRequest {
+  TimeTable time_table = 1;
+  UserItems user_items = 2;
+}
+
+message CreateEventResponse {
+  Event event = 1;
+}
+
+message UpdateEventRequest {
+  common.v1.Guid id = 1;
+  Event event = 2;
+}
+
+message UpdateEventResponse {
+  Event event = 1;
+}
+
+message DeleteEventRequest {
+  common.v1.Guid guid = 1;
+}
+
+message DeleteEventResponse {}

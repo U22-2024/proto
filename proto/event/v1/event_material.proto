@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package event.v1;
+
+import "event/v1/core.proto";
+
+service EventMaterialService {
+  rpc PredictEventMaterialItem(PredictEventMaterialItemRequest) returns (PredictEventMaterialItemResponse);
+}
+
+message EventMaterial {
+  bool type = 1;
+  string remind = 2;
+  Pos from_pos = 3;
+  string destination = 4;
+  Pos destination_pos = 5;
+  MoveType move_type = 6;
+  DateTime start_time = 7;
+  DateTime end_time = 8;
+}
+
+message PredictEventMaterialItemRequest {
+  string uid = 1;
+  EventMaterial event_material = 2;
+  string text = 3;
+}
+
+message PredictEventMaterialItemResponse {
+  EventMaterial event_material = 1;
+}

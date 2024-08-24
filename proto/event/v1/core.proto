@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package event.v1;
+
+enum MoveType {
+  MOVE_TYPE_UNSPECIFIED = 0;
+  MOVE_TYPE_CAR = 1;
+  MOVE_TYPE_TRAIN = 2;
+  MOVE_TYPE_WALK = 3;
+}
+
+enum TimeTableType {
+  TIME_TABLE_TYPE_UNSPECIFIED = 0;
+  TIME_TABLE_TYPE_POINT = 1;
+  TIME_TABLE_TYPE_MOVE = 2;
+}
+
+message Pos {
+  double lat = 1;
+  double lon = 2;
+}
+
+message DateTime {
+  uint32 year = 1;
+  uint32 month = 2;
+  uint32 day = 3;
+  uint32 hour = 4;
+  uint32 minute = 5;
+}
