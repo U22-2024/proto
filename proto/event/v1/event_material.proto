@@ -53,6 +53,7 @@ message PredictPositionsFromTextResponse {
 message PredictTimeTableRequest {
   common.v1.Uid uid = 1;
   EventMaterial event_material = 2;
+  bool is_going = 3;
 }
 
 message PredictTimeTableResponse {
