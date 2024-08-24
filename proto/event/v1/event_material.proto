@@ -4,10 +4,12 @@ package event.v1;
 
 import "common/v1/common.proto";
 import "event/v1/core.proto";
+import "event/v1/event.proto";
 
 service EventMaterialService {
   rpc PredictEventMaterialItem(PredictEventMaterialItemRequest) returns (PredictEventMaterialItemResponse);
   rpc PredictPositionsFromText(PredictPositionsFromTextRequest) returns (PredictPositionsFromTextResponse);
+  rpc PredictTimeTable(PredictTimeTableRequest) returns (PredictTimeTableResponse);
 }
 
 message Place {
@@ -46,4 +48,13 @@ message PredictPositionsFromTextRequest {
 
 message PredictPositionsFromTextResponse {
   repeated Place place = 1;
+}
+
+message PredictTimeTableRequest {
+  common.v1.Uid uid = 1;
+  EventMaterial event_material = 2;
+}
+
+message PredictTimeTableResponse {
+  repeated TimeTable time_table = 1;
 }
