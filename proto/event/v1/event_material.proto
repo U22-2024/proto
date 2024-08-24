@@ -23,8 +23,9 @@ message EventMaterial {
   string destination = 4;
   Pos destination_pos = 5;
   MoveType move_type = 6;
-  DateTime start_time = 7;
-  DateTime end_time = 8;
+  string option = 7;
+  DateTime start_time = 8;
+  DateTime end_time = 9;
 }
 
 message PredictEventMaterialItemRequest {
@@ -40,6 +41,7 @@ message PredictEventMaterialItemResponse {
 message PredictPositionsFromTextRequest {
   common.v1.Uid uid = 1;
   string text = 2;
+  Pos from_pos = 3;
 }
 
 message PredictPositionsFromTextResponse {
