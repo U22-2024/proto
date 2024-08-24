@@ -22,29 +22,30 @@ message Event {
 
 message TimeTable {
   repeated TimeTableItem item = 1;
+  uint32 transit_count = 2;
+  uint32 walk_distance = 3;
+  uint32 fare = 4;
 }
 
 message TimeTableItem {
   TimeTableType type = 1;
-  uint32 transit_count = 2;
-  uint32 walk_distance = 3;
 
   // type = point
-  string name = 4;
+  string name = 2;
 
   // type = move
-  MoveType move = 5;
-  DateTime from_time = 6;
-  DateTime end_time = 7;
-  uint32 distance = 8;
-  string line_name = 9;
+  string move = 3;
+  DateTime from_time = 4;
+  DateTime end_time = 5;
+  uint32 distance = 6;
+  string line_name = 7;
 
   // move = train
-  Transport transport = 10;
+  Transport transport = 8;
 }
 
 message Transport {
-  string fare = 1;
+  uint32 fare = 1;
   string train_name = 2;
   string color = 3;
   string direction = 4;
