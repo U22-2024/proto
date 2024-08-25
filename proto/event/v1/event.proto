@@ -15,9 +15,12 @@ service EventService {
 
 message Event {
   common.v1.Guid id = 1;
-  repeated string event_item = 2;
-  TimeTable time_table = 3;
-  UserItems user_items = 4;
+  string title = 2;
+  string description = 3;
+  repeated string event_item = 4;
+  TimeTable time_table = 5;
+  UserItems user_items = 6;
+  common.v1.Uid uid = 7;
 }
 
 message TimeTable {
@@ -76,8 +79,11 @@ message GetEventsResponse {
 
 message CreateEventRequest {
   common.v1.Uid uid = 1;
-  TimeTable time_table = 2;
-  UserItems user_items = 3;
+  string title = 2;
+  string description = 3;
+  repeated string event_item = 4;
+  TimeTable time_table = 5;
+  UserItems user_items = 6;
 }
 
 message CreateEventResponse {
