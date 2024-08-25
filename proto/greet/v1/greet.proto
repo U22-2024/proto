@@ -6,10 +6,14 @@ service GreetService {
   rpc GetGreet(GetGreetRequest) returns (GetGreetResponse);
 }
 
+message Greet {
+  string message = 1;
+}
+
 message GetGreetRequest {
   string name = 1;
 }
 
 message GetGreetResponse {
-  string message = 1;
+  Greet greet = 1;
 }
