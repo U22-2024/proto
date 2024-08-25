@@ -102,7 +102,7 @@ message UpdateEventResponse {
 
 message DeleteEventRequest {
   common.v1.Uid uid = 1;
-  common.v1.Guid guid = 2;
+  common.v1.Guid id = 2;
 }
 
 message DeleteEventResponse {}
