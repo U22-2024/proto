@@ -19,20 +19,34 @@ message Place {
 }
 
 message EventMaterial {
+  // 外出するかしないか
+  // ただのタスクか外出イベントか
   bool is_out = 1;
+  // イベントのタイトル
   string remind = 2;
+  // 現在地の緯度経度
   Pos from_pos = 3;
+  // 目的地の名前
   string destination = 4;
+  // 目的地の緯度経度
+  // PredictPositionsFromTextで取得したものを使う
   Pos destination_pos = 5;
+  // 移動手段
+  // リクエスト時には設定しなくてよい
   MoveType move_type = 6;
+  // 移動手段のオプション
   string option = 7;
+  // イベントの開始時間
   DateTime start_time = 8;
+  // イベントの終了時間
   DateTime end_time = 9;
 }
 
 message PredictEventMaterialItemRequest {
   common.v1.Uid uid = 1;
+  // 初回は空でリクエスト
   EventMaterial event_material = 2;
+  // レスポンスをもとにして、テキストをクライアント側で作成する
   string text = 3;
 }
 
@@ -42,17 +56,22 @@ message PredictEventMaterialItemResponse {
 
 message PredictPositionsFromTextRequest {
   common.v1.Uid uid = 1;
+  // ex.) イオン、スターバックス、東京駅
   string text = 2;
+  // 現在地の緯度経度
   Pos from_pos = 3;
 }
 
 message PredictPositionsFromTextResponse {
+  // 候補をいくつか返す
   repeated Place place = 1;
 }
 
 message PredictTimeTableRequest {
   common.v1.Uid uid = 1;
+  // 全て埋まった状態でリクエスト
   EventMaterial event_material = 2;
+  // 行きか帰りか
   bool is_going = 3;
 }
 
