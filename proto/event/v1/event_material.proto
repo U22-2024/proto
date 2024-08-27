@@ -10,6 +10,7 @@ service EventMaterialService {
   rpc PredictEventMaterialItem(PredictEventMaterialItemRequest) returns (PredictEventMaterialItemResponse);
   rpc PredictPositionsFromText(PredictPositionsFromTextRequest) returns (PredictPositionsFromTextResponse);
   rpc PredictTimeTable(PredictTimeTableRequest) returns (PredictTimeTableResponse);
+  rpc PredictEventItem(PredictEventItemRequest) returns (PredictEventItemResponse);
 }
 
 message Place {
@@ -77,4 +78,13 @@ message PredictTimeTableRequest {
 
 message PredictTimeTableResponse {
   repeated TimeTable time_table = 1;
+}
+
+message PredictEventItemRequest {
+  common.v1.Uid uid = 1;
+  string text = 2;
+}
+
+message PredictEventItemResponse {
+  repeated string event_item = 1;
 }
