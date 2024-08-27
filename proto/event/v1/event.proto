@@ -56,7 +56,6 @@ message UserItems {
   repeated string item = 1;
 }
 
-
 message GetEventRequest {
   common.v1.Uid uid = 1;
   common.v1.Guid id = 2;

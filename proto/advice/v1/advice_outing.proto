@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package advice.v1;
+
+service AdviceOutingService {
+  rpc GetAdvice(GetAdviceRequest) returns (GetAdviceResponse);
+}
+
+message GetAdviceRequest {
+  Location pos = 1;
+}
+
+message GetAdviceResponse {
+  double max_rainfall = 1;
+  bool is_require_umbrella = 2;
+}
+
+message Location {
+  double latitude = 1;
+  double longitude = 2;
+}
